@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Maven build output
 target/
 pom.xml.tag
@@ -43,3 +44,12 @@ desktop.ini
 
 # Local scratch files (curl request bodies, etc.)
 *.local.json
+
+# Secrets and dependencies
+.env
+node_modules/
+=======
+.env
+node_modules/
+.DS_Store
+>>>>>>> origin/main
