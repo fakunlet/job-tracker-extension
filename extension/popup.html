@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Save Job Application</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      width: 320px;
+      margin: 0;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 15px;
+      margin: 0 0 4px;
+    }
+
+    p.hint {
+      margin: 0 0 12px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 12px;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      border: 0;
+      border-radius: 4px;
+      background: #1a73e8;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #9bbdf0;
+      cursor: default;
+    }
+
+    #status {
+      margin-top: 12px;
+      min-height: 18px;
+      font-size: 13px;
+    }
+
+    .success { color: #137333; }
+    .error   { color: #c5221f; }
+  </style>
+</head>
+<body>
+  <h1>Save a job application</h1>
+  <p class="hint">Copy the details from the job posting and paste them below.</p>
+
+  <!-- A real <form> gives us Enter-to-submit for free. -->
+  <form id="application-form">
+    <label for="company">Company</label>
+    <input type="text" id="company" autocomplete="off" placeholder="Shopify">
+
+    <label for="role">Role</label>
+    <input type="text" id="role" autocomplete="off" placeholder="Backend Developer Intern">
+
+    <label for="url">Job posting URL</label>
+    <input type="text" id="url" autocomplete="off" placeholder="https://...">
+
+    <button type="submit" id="save-button">Save</button>
+  </form>
+
+  <div id="status"></div>
+
+  <!--
+    Manifest V3 forbids inline <script> blocks and inline onclick handlers,
+    so all JavaScript has to live in its own file.
+  -->
+  <script src="popup.js"></script>
+</body>
+</html>

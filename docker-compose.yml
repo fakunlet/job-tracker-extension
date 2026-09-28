@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: jobtracker-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: jobtracker
+      POSTGRES_USER: apiuser
+      POSTGRES_PASSWORD: apipass
+    ports:
+      # Host 5332 instead of the usual 5432, so this doesn't clash with any
+      # Postgres already installed on the machine.
+      - "5332:5432"
+    volumes:
+      # A named volume keeps the data when the container is recreated. Without
+      # it, every "docker compose down" would wipe the database.
+      - jobtracker-data:/var/lib/postgresql/data
+    healthcheck:
+      # "Container started" and "Postgres is ready for queries" are different
+      # moments; this reports the second one.
+      test: ["CMD-SHELL", "pg_isready -U apiuser -d jobtracker"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  jobtracker-data:
